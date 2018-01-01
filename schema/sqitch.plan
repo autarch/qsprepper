@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=qsprepper
+%uri=https://github.com/autarch/qsprepper--engine
+
+base 2018-01-01T17:52:19Z Dave Rolsky <autarch@urth.org> # Initial database design
