@@ -1,0 +1,502 @@
+consumes:
+- application/com.qsprepper.v0+json
+info:
+  description: A spaced repetition system
+  title: Q.S. Prepper
+  version: 0.0.1
+produces:
+- application/com.qsprepper.v0+json
+schemes:
+- http
+swagger: "2.0"
+tags:
+  - name: Users
+    description: Operations related to users
+  - name: Items
+    description: Operations related to items
+paths:
+  /users:
+    get:
+      tags:
+        - Users
+      summary: List of users
+      description: Get a list of all users
+      operationId: all_users
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: All users
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+        - Users
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/User'
+      summary: Add a new user
+      description: Add a new user
+      operationId: add_user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: One user was created
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+  /users/{userID}:
+    parameters:
+      - name: userID
+        in: path
+        type: string
+        format: uuid
+        required: true
+    get:
+      tags:
+        - Users
+      summary: A single user
+      description: Get a single user
+      operationId: get_user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: One user
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+        - Users
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/User'
+      summary: Update a user
+      description: Update a user
+      operationId: update_user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: One user was updated
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+        - Users
+      parameters:
+        - name: userID
+          in: path
+          type: integer
+          format: uuid
+          required: true
+      summary: Delete a user
+      description: Delete a user
+      operationId: delete_user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '204':
+          description: Deleted
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+  /items:
+    get:
+      tags:
+        - Items
+      summary: List of items
+      description: Get a list of all items
+      operationId: all_items
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: All items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Item'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+        - Items
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/Item'
+      summary: Add a new item
+      description: Add a new item
+      operationId: add_item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: One item was created
+          schema:
+            $ref: '#/definitions/Item'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+  /items/{itemID}:
+    parameters:
+      - name: itemID
+        in: path
+        type: string
+        format: uuid
+        required: true
+    get:
+      tags:
+        - Items
+      summary: A single item
+      description: Get a single item
+      operationId: get_item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: One item
+          schema:
+            $ref: '#/definitions/Item'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+        - Items
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/Item'
+      summary: Update an item
+      description: Update an item
+      operationId: update_item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: One item was updated
+          schema:
+            $ref: '#/definitions/Item'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+        - Items
+      parameters:
+        - name: itemID
+          in: path
+          type: integer
+          format: uuid
+          required: true
+      summary: Delete an item
+      description: Delete an item
+      operationId: delete_item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '204':
+          description: Deleted
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+  /subscriptions:
+    get:
+      tags:
+        - Subscriptions
+      summary: List of subscriptions
+      description: Get a list of all subscriptions
+      operationId: all_subscriptions
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: All subscriptions
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Subscription'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+        - Subscriptions
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/Subscription'
+      summary: Add a new subscription
+      description: Add a new subscription
+      operationId: add_subscription
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: One subscription was created
+          schema:
+            $ref: '#/definitions/Subscription'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+  /subscriptions/{subscriptionID}:
+    parameters:
+      - name: subscriptionID
+        in: path
+        type: string
+        format: uuid
+        required: true
+    get:
+      tags:
+        - Subscriptions
+      summary: A single subscription
+      description: Get a single subscription
+      operationId: get_subscription
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: One subscription
+          schema:
+            $ref: '#/definitions/Subscription'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+        - Subscriptions
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/Subscription'
+      summary: Update a subscription
+      description: Update a subscription
+      operationId: update_subscription
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: One subscription was updated
+          schema:
+            $ref: '#/definitions/Subscription'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+        - Subscriptions
+      parameters:
+        - name: subscriptionID
+          in: path
+          type: integer
+          format: uuid
+          required: true
+      summary: Delete a subscription
+      description: Delete a subscription
+      operationId: delete_subscription
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '204':
+          description: Deleted
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+  /subscriptions/{subscriptionID}/reviews:
+    parameters:
+      - name: subscriptionID
+        in: path
+        type: string
+        format: uuid
+        required: true
+    get:
+      tags:
+        - Subscription Reviews
+      summary: List of subscription reviews
+      description: Get a list of all subscription reviews
+      operationId: all_subscription_reviews
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: All subscription reviews
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SubscriptionReview'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+        - Subscription Reviews
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/SubscriptionReview'
+      summary: Add a new subscription review
+      description: Add a new subscription review
+      operationId: add_subscription_review
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: One subscription review was created
+          schema:
+            $ref: '#/definitions/SubscriptionReview'
+        default:
+          description: An error reponse
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  User:
+    type: object
+    required:
+      - name
+      - email
+    properties:
+      user_id:
+        type: string
+        format: uuid
+        readOnly: true
+      name:
+        type: string
+      email:
+        type: string
+        format: email
+  Item:
+    type: object
+    required:
+      - name
+      - content
+    properties:
+      item_id:
+        type: string
+        format: uuid
+        readOnly: true
+      name:
+        type: string
+      content:
+        type: string
+      difficulty:
+        type: number
+        format: double
+        default: 0.3
+  Subscription:
+    type: object
+    required:
+      - user_id
+      - item_id
+    properties:
+      user_id:
+        type: string
+        format: uuid
+      item_id:
+        type: string
+        format: uuid
+      days_between_reviews:
+        type: integer
+        format: int32
+  SubscriptionReview:
+    type: object
+    required:
+      - subscription_id
+      - review_date
+      - success
+    properties:
+      subscription_id:
+        type: string
+        format: uuid
+      review_date:
+        type: string
+        format: date
+      success:
+        type: number
+        format: double
+  Error:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int64
+      message:
+        type: string
